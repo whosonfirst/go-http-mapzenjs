@@ -1,5 +1,7 @@
 # go-mapzen-js
 
+Go middleware package for mapzen.js
+ 
 ## Install
 
 You will need to have both `Go` (specifically a version of Go more recent than 1.6 so let's just assume you need [Go 1.8](https://golang.org/dl/) or higher) and the `make` programs installed on your computer. Assuming you do just type:
@@ -115,3 +117,7 @@ func main(){
         mux.Handle("/", key_handler)
 }
 ```	
+
+## See also 
+
+* https://mapzen.com/documentation/mapzen-js/
