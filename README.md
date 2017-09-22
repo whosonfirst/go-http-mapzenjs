@@ -1,7 +1,5 @@
 # go-mapzen-js
 
-
-
 ## Install
 
 You will need to have both `Go` (specifically a version of Go more recent than 1.6 so let's just assume you need [Go 1.8](https://golang.org/dl/) or higher) and the `make` programs installed on your computer. Assuming you do just type:
@@ -22,15 +20,15 @@ Too soon. Move along.
 
 ```
 import (
-	mapzen_http "github.com/whosonfirst/go-mapzen-js/http"
-	go_http "net/http"
+	mz "github.com/whosonfirst/go-http-mapzenjs"
+	go_"net/http"
 )
 
 func main(){
 
-	mapzenjs_handler, _ := mapzen_http.MapzenJSHandler()
+	mapzenjs_handler, _ := mz.MapzenJSHandler()
 
-	mux := go_http.NewServeMux()
+	mux := http.NewServeMux()
 
 	mux.Handle("/javascript/mapzen.js", mapzenjs_handler)
 	mux.Handle("/javascript/mapzen.min.js", mapzenjs_handler)
@@ -42,26 +40,26 @@ func main(){
 }
 ```
 
-### MapzenAPIKeyHandler(next gohttp.Handler, fs gohttp.FileSystem, api_key string) (gohttp.Handler, error)
+### MapzenAPIKeyHandler(next http.Handler, fs http.FileSystem, api_key string) (http.Handler, error)
 
 This will insert to value of `api_key` in to the `data-mapzen-api-key` attribute of the body element for all HTML pages.
 
 ```
 import (
-	mapzen_http "github.com/whosonfirst/go-mapzen-js/http"
-	go_http "net/http"
+	mz "github.com/whosonfirst/go-http-mapzenjs"
+	"net/http"
 )
 
 func main(){
 
      	api_key := "mapzen-xxxxxxx"
 	
-	fs := go_http.Dir("/usr/local/www")
-	www_handler := go_http.FileServer(fs)
+	fs := http.Dir("/usr/local/www")
+	www_handler := http.FileServer(fs)
 	
-        key_handler, _ := mapzen_http.MapzenAPIKeyHandler(www_handler, fs, api_key)
+        key_handler, _ := mz.MapzenAPIKeyHandler(www_handler, fs, api_key)
 
-	mux := go_http.NewServeMux()
+	mux := http.NewServeMux()
         mux.Handle("/", key_handler)
 }
 ```
@@ -80,17 +78,17 @@ For example:
 package http
 
 import (
-        go_http "net/http"
+        gohttp "net/http"
 )
 
-func WWWFileSystem() go_http.FileSystem {
+func WWWFileSystem() gohttp.FileSystem {
      return assetFS()
 }
 
-func WWWHandler() (go_http.Handler, error) {
+func WWWHandler() (gohttp.Handler, error) {
 
         fs := assetFS()
-	return go_http.FileServer(fs), nil
+	return gohttp.FileServer(fs), nil
 }
 ```
 
@@ -99,8 +97,8 @@ And then you would invoke it all, like this:
 ```
 import (
 	my_http "example.com/my/http"
-	mapzen_http "github.com/whosonfirst/go-mapzen-js/http"
-	go_http "net/http"
+	mz "github.com/whosonfirst/go-http-mapzenjs"
+	"net/http"
 	
 )
 
@@ -111,9 +109,9 @@ func main(){
         www_handler, _ := my_http.WWWHandler()
         fs := my_http.WWWFileSystem()
 
-        key_handler, _ := mapzen_http.MapzenAPIKeyHandler(www_handler, fs,*api_key)
+        key_handler, _ := mz.MapzenAPIKeyHandler(www_handler, fs,*api_key)
 
-	mux := go_http.NewServeMux()
+	mux := http.NewServeMux()
         mux.Handle("/", key_handler)
 }
 ```	
