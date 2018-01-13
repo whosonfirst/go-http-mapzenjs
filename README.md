@@ -147,6 +147,10 @@ Currently the following styles are bundled with this package:
 * [refill](https://tangrams.github.io/refill-style/)
 * [walkabout](https://tangrams.github.io/walkabout-style/)
 
+## To do
+
+* Add a tile caching proxy
+
 ## See also 
 
 * https://mapzen.com/documentation/mapzen-js/
