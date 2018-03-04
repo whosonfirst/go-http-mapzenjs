@@ -68,3 +68,18 @@ mapzenjs:
 	# curl -s -o www/css/mapzen.js.css https://mapzen.com/js/mapzen.css
 	# curl -s -o www/javascript/mapzen.js https://mapzen.com/js/mapzen.js
 	# curl -s -o www/javascript/mapzen.min.js https://mapzen.com/js/mapzen.min.js
+
+# http://leafletjs.com/download.html
+
+leaflet:
+	curl -s -o www/css/leaflet.css https://unpkg.com/leaflet@1.3.1/dist/leaflet.css
+	@make sritest FILE=www/css/leaflet.css EXPECTED=Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==
+	curl -s -o www/javascript/leaflet.js https://unpkg.com/leaflet@1.3.1/dist/leaflet.js 
+	@make sritest FILE=www/javascript/leaflet.js EXPECTED=/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==
+
+# https://github.com/chrisgreg/sri-gen/blob/master/sri-gen.go
+
+sritest:
+	$(eval SRIHASH := $(shell shasum -b -a 512 $(FILE)  | xxd -r -p | base64))
+	if test "$(SRIHASH)" != "$(EXPECTED)"; then echo "$(FILE) has unexpected SRI hash"; exit 1; fi
+	# @echo "$(FILE) has expected SRI hash"
