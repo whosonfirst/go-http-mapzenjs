@@ -77,6 +77,7 @@ leaflet:
 	curl -s -o www/javascript/leaflet.js https://unpkg.com/leaflet@1.3.1/dist/leaflet.js 
 	@make sritest FILE=www/javascript/leaflet.js EXPECTED=/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==
 
+# https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
 # https://github.com/chrisgreg/sri-gen/blob/master/sri-gen.go
 
 sritest:

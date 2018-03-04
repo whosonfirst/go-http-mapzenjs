@@ -12,6 +12,21 @@ import (
 	"strconv"
 )
 
+/*
+
+func SomethingSomethingSomething(mux Mux, mapzenjs_assets_handler Handler) error {
+
+     mux.Handle("/javascript/mapzen.min.js", mapzenjs_assets_handler)
+     mux.Handle("/javascript/tangram.min.js", mapzenjs_assets_handler)
+     mux.Handle("/javascript/mapzen.js", mapzenjs_assets_handler)
+     mux.Handle("/javascript/tangram.js", mapzenjs_assets_handler)
+     mux.Handle("/css/mapzen.js.css", mapzenjs_assets_handler)
+     mux.Handle("/tangram/refill-style.zip", mapzenjs_assets_handler)
+     mux.Handle("/tangram/refill-style-themes-label.zip", mapzenjs_assets_handler)
+}
+
+*/
+
 type MapzenJSOptions struct {
 	AppendAPIKey bool
 	AppendJS     bool
